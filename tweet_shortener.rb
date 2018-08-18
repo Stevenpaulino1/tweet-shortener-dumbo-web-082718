@@ -13,17 +13,19 @@ hash = {
 }
 end  
 
-def word_substituter (string)
-  array = string.split(" ")
-  array.each_with_index do |words,index|
-    dictionary.keys.each do |x|
-      if x == words 
-      array[index] = dictionary[x]
-      end
-      end
-      end
-array.join(" ")
+def word_substituter(string)
+  array = []
+  string.split.each do |word|
+    if dictionary.keys.include?(word.downcase)
+      word = dictionary[word.downcase]
+      array << word
+    else
+      array << word
+    end
+  end
+  array.join(" ")
 end
+
 
 def bulk_tweet_shortener(array)
   array.each {|x| puts word_substituter (x)}
